@@ -18,8 +18,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         url: PRODUCTS_URL,
         method: 'POST',
       }),
-      // basically invalidates data with this tag, so when this mutation happens, invalidate the data with the Products tag (products list)
-      invalidatesTags: ['Products'],
+      invalidatesTags: ['Product'],
     }),
     updateProduct: builder.mutation({
       query: (data) => ({

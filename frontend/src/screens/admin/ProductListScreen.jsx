@@ -20,6 +20,8 @@ const ProductListScreen = () => {
     if (window.confirm('Are you sure you want to create a new product?')) {
       try {
         await createProduct()
+        // could then refetch products list here, but looks like we don't need to
+        // as it's already been refetched by useGetProductsQuery
       } catch (err) {
         toast.error(err?.data?.message || err.message)
       }
