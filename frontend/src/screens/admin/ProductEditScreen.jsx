@@ -58,8 +58,6 @@ const ProductEditScreen = () => {
       description,
     }
 
-    console.log(updatedProduct)
-
     const result = await updateProduct(updatedProduct)
 
     if (result.error) {

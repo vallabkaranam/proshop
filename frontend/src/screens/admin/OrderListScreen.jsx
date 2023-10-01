@@ -9,8 +9,6 @@ import { FaTimes } from 'react-icons/fa'
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery()
 
-  console.log(orders)
-
   return (
     <>
       <h1>Orders</h1>
