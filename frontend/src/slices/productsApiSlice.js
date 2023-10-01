@@ -5,6 +5,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => ({ url: PRODUCTS_URL }),
+      // provides which tag is given to the data returned in this query
       providesTags: ['Products'],
       keepUnusedDataFor: 5,
     }),
@@ -17,7 +18,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         url: PRODUCTS_URL,
         method: 'POST',
       }),
-      invalidatesTags: ['Product'],
+      // basically invalidates data with this tag, so when this mutation happens, invalidate the data with the Products tag (products list)
+      invalidatesTags: ['Products'],
     }),
     updateProduct: builder.mutation({
       query: (data) => ({
@@ -25,6 +27,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
+      // basically invalidates data with these tags, so when this mutation happens, invalidate the data with the Products tag (products list)
       invalidatesTags: ['Products'],
     }),
   }),
