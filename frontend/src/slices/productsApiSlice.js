@@ -11,6 +11,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     }),
     getProductDetails: builder.query({
       query: (productId) => ({ url: `${PRODUCTS_URL}/${productId}` }),
+      // this will keep the stale data for 5 seconds,
+      // so if you click on the same product again within 5 seconds,
+      // it will show the old data
       keepUnusedDataFor: 5,
     }),
     createProduct: builder.mutation({

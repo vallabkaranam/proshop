@@ -44,6 +44,21 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Users'],
     }),
+    getUserDetails: builder.query({
+      query: (userId) => ({ url: `${USERS_URL}/${userId}` }),
+      // this will keep the stale data for 5 seconds,
+      // so if you click on the same user again within 5 seconds,
+      // it will show the old data
+      keepUnusedDataFor: 5,
+    }),
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/${data.userId}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Users'],
+    }),
   }),
 })
 
@@ -54,4 +69,6 @@ export const {
   useProfileMutation,
   useGetUsersQuery,
   useDeleteUserMutation,
+  useGetUserDetailsQuery,
+  useUpdateUserMutation,
 } = usersApiSlice
