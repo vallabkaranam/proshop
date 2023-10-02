@@ -36,6 +36,16 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    deleteProduct: builder.mutation({
+      query: (productId) => ({
+        url: `${PRODUCTS_URL}/${productId}`,
+        method: 'DELETE',
+      }),
+      // basically invalidates data with these tags, so when this mutation happens,
+      // invalidate the data with the Products tag (products list)
+      // this is in place of using the refetch on products list in ProductListScreen
+      invalidatesTags: ['Products'],
+    }),
   }),
 })
 
@@ -45,4 +55,5 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useUploadProductImageMutation,
+  useDeleteProductMutation,
 } = productsApiSlice
