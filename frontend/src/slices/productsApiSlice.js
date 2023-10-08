@@ -15,6 +15,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       // so if you click on the same product again within 5 seconds,
       // it will show the old data
       keepUnusedDataFor: 5,
+      providesTags: ['Product'],
     }),
     createProduct: builder.mutation({
       query: () => ({
@@ -49,6 +50,17 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       // this is in place of using the refetch on products list in ProductListScreen
       invalidatesTags: ['Products'],
     }),
+    createReview: builder.mutation({
+      query: (data) => ({
+        url: `${PRODUCTS_URL}/${data.productId}/reviews`,
+        method: 'POST',
+        body: data,
+      }),
+      // // basically invalidates data with these tags, so when this mutation happens,
+      // // invalidate the data with the Product tag (details about current product)
+      // // this is in place of using the refetch on products list in ProductScreen
+      invalidatesTags: ['Product'],
+    }),
   }),
 })
 
@@ -59,4 +71,5 @@ export const {
   useUpdateProductMutation,
   useUploadProductImageMutation,
   useDeleteProductMutation,
+  useCreateReviewMutation,
 } = productsApiSlice
