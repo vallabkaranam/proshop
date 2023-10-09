@@ -16,7 +16,12 @@ import { toast } from 'react-toastify'
 const ProductListScreen = () => {
   const { pageNumber } = useParams()
 
-  const { data, isLoading, error, refetch } = useGetProductsQuery({
+  const {
+    data,
+    isLoading,
+    error,
+    // refetch
+  } = useGetProductsQuery({
     pageNumber,
   })
 
