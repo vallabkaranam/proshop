@@ -68,6 +68,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       // // this is in place of using the refetch on products list in ProductScreen
       invalidatesTags: ['Product'],
     }),
+    getTopProducts: builder.query({
+      query: () => ({
+        url: `${PRODUCTS_URL}/top`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 })
 
@@ -79,4 +85,5 @@ export const {
   useUploadProductImageMutation,
   useDeleteProductMutation,
   useCreateReviewMutation,
+  useGetTopProductsQuery,
 } = productsApiSlice

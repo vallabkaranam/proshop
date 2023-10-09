@@ -6,12 +6,17 @@ import {
   updateProduct,
   deleteProduct,
   createProductReview,
+  getTopProducts,
 } from '../controllers/productController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
 router.route('/').get(getProducts).post(protect, admin, createProduct)
+
+// has to be here or else router will think /top is /:id
+router.get('/top', getTopProducts)
+
 router
   .route('/:id')
   .get(getProductById)
