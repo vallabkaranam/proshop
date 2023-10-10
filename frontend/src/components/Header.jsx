@@ -6,6 +6,7 @@ import { useLogoutMutation } from '../slices/usersApiSlice'
 import { logout } from '../slices/authSlice'
 import SearchBox from './SearchBox'
 import logo from '../assets/logo.png'
+import { resetCart } from '../slices/cartSlice'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -22,6 +23,7 @@ const Header = () => {
       // to unwrap the promise
       await logoutApiCall().unwrap()
       dispatch(logout())
+      dispatch(resetCart())
       navigate('/login')
     } catch (err) {
       console.log(err)
