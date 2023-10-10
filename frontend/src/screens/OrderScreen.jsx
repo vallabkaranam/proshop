@@ -62,7 +62,7 @@ const OrderScreen = () => {
   const onApprove = (data, actions) => {
     return actions.order.capture().then(async (details) => {
       try {
-        await payOrder({ orderId, details })
+        await payOrder({ orderId, details }).unwrap()
         refetch()
         toast.success('Payment successful')
       } catch (err) {
@@ -71,7 +71,7 @@ const OrderScreen = () => {
     })
   }
   // const onApproveTest = async () => {
-  //   await payOrder({ orderId, details: { payer: {} } })
+  //   await payOrder({ orderId, details: { payer: {} } }).unwrap()
   //   refetch()
   //   toast.success('Payment successful')
   // }
