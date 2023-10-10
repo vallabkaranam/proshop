@@ -41,13 +41,14 @@ const addOrderItems = asyncHandler(async (req, res) => {
     const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
       calcPrices(dbOrderItems)
 
-    console.log(typeof itemsPrice, taxPrice, shippingPrice, totalPrice)
-
     const order = new Order({
       orderItems: dbOrderItems,
       user: req.user._id,
       shippingAddress,
       paymentMethod,
+      // these prices are sent as strings, but the db expects numbers accordind to the model,
+      // so the db will be converting them to numbers and when the order is created/saved, they will return as numbers without any leading zeros
+      // to ensure that the display always has 2 decimal places, toFixed(2) will be added to the frontend OrderScreen.jsx
       itemsPrice,
       taxPrice,
       shippingPrice,

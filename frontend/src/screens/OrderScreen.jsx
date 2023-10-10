@@ -177,19 +177,22 @@ const OrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
+                  {/* these prices are sent as strings, but the db expects numbers accordind to the model,
+                  so the db will be converting them to numbers and when the order is created/saved, they will return as numbers without any leading zeros.
+                 to ensure that the display always has 2 decimal places, toFixed(2) will be added to the frontend OrderScreen.jsx */}
+                  <Col>${order.itemsPrice.toFixed(2)}</Col>
                 </Row>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
+                  <Col>${order.shippingPrice.toFixed(2)}</Col>
                 </Row>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>${order.taxPrice.toFixed(2)}</Col>
                 </Row>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
+                  <Col>${order.totalPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (

@@ -1,4 +1,5 @@
 function addDecimals(num) {
+  // returns a string with 2 decimal places
   return (Math.round(num * 100) / 100).toFixed(2)
 }
 
